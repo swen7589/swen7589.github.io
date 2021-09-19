@@ -1,4 +1,4 @@
-#!/bin/python
+!/bin/python
 
 '''
 Lab instructions: 
@@ -25,10 +25,11 @@ def hypotenuse(a, b):
     13.0
     '''
     a = 3
-    b = 7
+    b = 4
 
-    # formula = math.sqrt(a+b)
-    # return formula
+    formula = a**2 + b**2
+    math.sqrt(formula)
+    return formula
 
 def is_even(n):
     '''
@@ -45,7 +46,12 @@ def is_even(n):
     >>> is_even(-9)
     False
     '''
+    # n = 3
 
+    # if n // 2 == 1:
+      #  return True
+    # else:
+      #  return False
 
 def is_odd(n):
     '''
@@ -77,7 +83,7 @@ def absolute_value(n):
     >>> absolute_value(-5.5)
     5.5
     '''
-    n = -37.0
+    # n = -37.0
     # formula
     # print(formula)
     
@@ -177,6 +183,11 @@ def num_digits(n):
     >>> num_digits(-10)
     2
     '''
+    
+    # n = 1000
+    # while n%10
+        # total = n
+    # print('digits=', total)
 
 
 def factorial(n):
@@ -221,6 +232,12 @@ def is_prime(n):
     >>> is_prime(99)
     False
     '''
+    # n = 0
+    # for i in range(37):
+        # if n-1 // n:
+            # return True
+        # else:
+            # return False
 
 
 def is_perfect_square(n):
