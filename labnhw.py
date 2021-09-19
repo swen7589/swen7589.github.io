@@ -28,8 +28,9 @@ def hypotenuse(a, b):
     b = 4
 
     formula = a**2 + b**2
-    math.sqrt(formula)
-    return formula
+    answer = math.sqrt(formula)
+    return answer
+
 
 def is_even(n):
     '''
@@ -46,12 +47,13 @@ def is_even(n):
     >>> is_even(-9)
     False
     '''
-    # n = 3
+    n = 22
 
-    # if n // 2 == 1:
-      #  return True
-    # else:
-      #  return False
+    if n%2 == 0:
+        print(True)
+    else:
+        print(False)
+
 
 def is_odd(n):
     '''
@@ -67,6 +69,12 @@ def is_odd(n):
     >>> is_odd(-9)
     True
     '''
+    n = 37
+
+    if n%2 == 0:
+        print(False)
+    else:
+        print(True)
 
 
 def absolute_value(n):
@@ -83,9 +91,10 @@ def absolute_value(n):
     >>> absolute_value(-5.5)
     5.5
     '''
-    # n = -37.0
-    # formula
-    # print(formula)
+    n = -37.3
+    
+    formula = math.fabs(n)
+    print(formula)
     
 
 def max_num(a, b):
