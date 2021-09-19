@@ -26,8 +26,8 @@ def hypotenuse(a, b):
     '''
     a = 3
     b = 7
-    formula = (math.sqrt(math.square(a)+math.square(b)))
-    print(formula)
+    formula = math.sqrt(a+b)
+    return formula
 
 def is_even(n):
     '''
