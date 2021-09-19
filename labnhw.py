@@ -24,10 +24,10 @@ def hypotenuse(a, b):
     >>> hypotenuse(12.0, 5.0)
     13.0
     '''
-a = 3
-b = 7
-formula = math.sqrt(math.square(a)+math.square(b))
-print(formula)
+    a = 3
+    b = 7
+    formula = math.sqrt(math.square(a)+math.square(b))
+    print(formula)
 
 def is_even(n):
     '''
