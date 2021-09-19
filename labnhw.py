@@ -1,4 +1,4 @@
-!/bin/python
+# !/bin/python
 
 '''
 Lab instructions: 
