@@ -26,7 +26,7 @@ def hypotenuse(a, b):
     '''
     a = 3
     b = 7
-    formula = math.sqrt(math.square(a)+math.square(b))
+    formula = (math.sqrt(math.square(a)+math.square(b)))
     print(formula)
 
 def is_even(n):
@@ -76,7 +76,9 @@ def absolute_value(n):
     >>> absolute_value(-5.5)
     5.5
     '''
-
+    n = -37
+    formula = (math.absolute_value(n))
+    print(formula)
     
 
 def max_num(a, b):
