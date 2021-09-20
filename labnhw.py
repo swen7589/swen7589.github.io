@@ -24,8 +24,6 @@ def hypotenuse(a, b):
     >>> hypotenuse(12.0, 5.0)
     13.0
     '''
-    a = 3
-    b = 4
 
     formula = a**2 + b**2
     answer = math.sqrt(formula)
@@ -47,7 +45,6 @@ def is_even(n):
     >>> is_even(-9)
     False
     '''
-    n = 22
 
     if n%2 == 0:
         print(True)
@@ -69,7 +66,6 @@ def is_odd(n):
     >>> is_odd(-9)
     True
     '''
-    n = 37
 
     if n%2 == 0:
         print(False)
@@ -91,7 +87,6 @@ def absolute_value(n):
     >>> absolute_value(-5.5)
     5.5
     '''
-    n = -37.3
     
     formula = math.fabs(n)
     print(formula)
@@ -111,8 +106,6 @@ def max_num(a, b):
     >>> max_num(4, 4)
     4
     '''
-    a = 3
-    b = 7
 
     if a > b:
         print('a is the bigger number:', a)
@@ -136,11 +129,7 @@ def max_num_4(a, b, c, d):
     >>> max_num_4(10,1,2,3)
     10
     '''
-    a = 3
-    b = 7
-    c = 8
-    d = 9
-
+   
     if a > b or a > c or a > d:
         print('a is the biggest number:', a)
     elif b > c or b > d:
@@ -165,8 +154,6 @@ def max_num_abs(a, b):
     >>> max_num_abs(4,4)
     4
     '''
-    a = 3
-    b = 7
 
     if a > b:
         formula = math.fabs(a)
@@ -197,7 +184,6 @@ def is_leap_year(n):
     >>> is_leap_year(2400)
     True
     '''
-    n = 1989
 
     if n%4 == 0 or n%400 == 0:
         print(True)
@@ -227,11 +213,16 @@ def num_digits(n):
     >>> num_digits(-10)
     2
     '''
-    # n = 1000
     
-    # while n%10:
-        # total = n
-    # print('digits=', total)
+    total = 0.0
+    digits = 0.0
+    
+    while n>0:
+        total = n%10
+        digits += 1
+        n //= 10
+        total = digits
+    print('digits =', total)
 
 
 def factorial(n):
@@ -254,7 +245,6 @@ def factorial(n):
     >>> factorial(100)
     93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
     '''
-    n = 3
     
     formula = math.factorial(n)
     print(formula)
