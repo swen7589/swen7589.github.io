@@ -88,7 +88,7 @@ def absolute_value(n):
     5.5
     '''
     
-    formula = math.fabs(n)
+    formula = abs(n)
     print(formula)
     
 
@@ -108,9 +108,9 @@ def max_num(a, b):
     '''
 
     if a > b:
-        print('a is the bigger number:', a)
+        print(a)
     else:
-        print('b is the bigger number', b)
+        print(b)
     
 
 def max_num_4(a, b, c, d):
@@ -131,13 +131,13 @@ def max_num_4(a, b, c, d):
     '''
    
     if a > b or a > c or a > d:
-        print('a is the biggest number:', a)
+        print(a)
     elif b > c or b > d:
-        print('b is the biggest number:', b)
+        print(b)
     elif c > d:
-        print('c is the biggest number:', c)
+        print(c)
     else:
-        print('d is the biggest number:', d)
+        print(d)
     
 
 def max_num_abs(a, b):
@@ -156,10 +156,10 @@ def max_num_abs(a, b):
     '''
 
     if a > b:
-        formula = math.fabs(a)
+        formula = abs(a)
         print(formula)
     else:
-        formula = math.fabs(b)
+        formula = abs(b)
         print(formula)
 
 
@@ -185,10 +185,16 @@ def is_leap_year(n):
     True
     '''
 
-    if n%4 == 0 or n%400 == 0:
-        print(True)
+    if n%4 == 0:
+        if n%100 == 0:
+            if n%400 == 0:       
+                print(True)
+            else:
+                print(False)
+        else:
+            print(True)
     else:
-        print(False)
+        print(False) 
 
 
 def num_digits(n):
@@ -213,16 +219,17 @@ def num_digits(n):
     >>> num_digits(-10)
     2
     '''
+
+    x = math.fabs(n)
+    total = 0
+    digits = 0
     
-    total = 0.0
-    digits = 0.0
-    
-    while n>0:
-        total = n%10
+    while x:
+        total = x%10
         digits += 1
-        n //= 10
+        x //= 10
         total = digits
-    print('digits =', total)
+    print(total)
 
 
 def factorial(n):
@@ -270,13 +277,12 @@ def is_prime(n):
     >>> is_prime(99)
     False
     '''
-    # n = 0
     
-    # for i in range(37):
-        # if n-1 // n:
-            # return True
-        # else:
-            # return False
+    for i in range(37):
+        if n-1 // n:
+            return True
+        else:
+            return False
 
 
 def is_perfect_square(n):
