@@ -111,6 +111,13 @@ def max_num(a, b):
     >>> max_num(4, 4)
     4
     '''
+    a = 3
+    b = 7
+
+    if a > b:
+        print('a is the bigger number:', a)
+    else:
+        print('b is the bigger number', b)
     
 
 def max_num_4(a, b, c, d):
@@ -129,6 +136,19 @@ def max_num_4(a, b, c, d):
     >>> max_num_4(10,1,2,3)
     10
     '''
+    a = 3
+    b = 7
+    c = 8
+    d = 9
+
+    if a > b or a > c or a > d:
+        print('a is the biggest number:', a)
+    elif b > c or b > d:
+        print('b is the biggest number:', b)
+    elif c > d:
+        print('c is the biggest number:', c)
+    else:
+        print('d is the biggest number:', d)
     
 
 def max_num_abs(a, b):
@@ -145,6 +165,15 @@ def max_num_abs(a, b):
     >>> max_num_abs(4,4)
     4
     '''
+    a = 3
+    b = 7
+
+    if a > b:
+        formula = math.fabs(a)
+        print(formula)
+    else:
+        formula = math.fabs(b)
+        print(formula)
 
 
 def is_leap_year(n):
@@ -168,6 +197,12 @@ def is_leap_year(n):
     >>> is_leap_year(2400)
     True
     '''
+    n = 1989
+
+    if n%4 == 0 or n%400 == 0:
+        print(True)
+    else:
+        print(False)
 
 
 def num_digits(n):
@@ -192,9 +227,9 @@ def num_digits(n):
     >>> num_digits(-10)
     2
     '''
-    
     # n = 1000
-    # while n%10
+    
+    # while n%10:
         # total = n
     # print('digits=', total)
 
@@ -219,6 +254,10 @@ def factorial(n):
     >>> factorial(100)
     93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
     '''
+    n = 3
+    
+    formula = math.factorial(n)
+    print(formula)
 
 
 def is_prime(n):
@@ -242,6 +281,7 @@ def is_prime(n):
     False
     '''
     # n = 0
+    
     # for i in range(37):
         # if n-1 // n:
             # return True
