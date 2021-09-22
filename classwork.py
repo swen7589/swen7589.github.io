@@ -25,6 +25,30 @@ def largest(xs):
     >>> largest([])
     '''
 
+    '''
+    if len(xs) == 0:
+        return None
+
+    biggest = 0
+
+    for x in xs:
+        if x > biggest:
+            biggest = x
+    return biggest
+    '''
+
+    '''
+    if len(xs) == 0:
+        return None
+    
+    xs.sort()
+    return xs[-1]
+    '''
+
+    if len(xs) == 0:
+        return None
+    return max(xs)
+
 
 def largest_index(xs):
     '''
@@ -35,13 +59,27 @@ def largest_index(xs):
     >>> largest_index([1,2,3])
     2
     >>> largest_index([99,-56,80,100,90])
-    4
+    3
     >>> largest_index(list(range(0,100)))
     99
     >>> largest_index([10])
     0
     >>> largest_index([])
     '''
+
+    if len(xs) == 0:
+        return None
+
+    biggest = 0 # or math.inf (infinity)
+    biggest_index = None # keep track of index in new variable
+
+    # for x in xs:
+    for i in range(len(xs)): #loops over indexes instead of values
+        x = xs[i]
+        if x > biggest:
+            biggest = xs[i]
+            biggest_index = i
+    return biggest_index
 
 
 def filter_odd(xs):
@@ -59,6 +97,13 @@ def filter_odd(xs):
     [20, 4, 16, 8, 10]
     '''
 
+    accumulator = []
+
+    for x in xs:
+        if x%2 == 0:
+            accumulator.append(x)
+    return accumulator
+
 
 ################################################################################
 # dictionaries
@@ -67,6 +112,7 @@ def filter_odd(xs):
 # These dictionaries store the grades of famous people in their math, english, and economics classes.
 # You shouldn't modify these dictionaries,
 # they are used in the doctests for the functions below.
+
 math_grades={
         'donald knuth':85,
         'hypatia':75,
