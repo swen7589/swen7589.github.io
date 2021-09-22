@@ -114,8 +114,8 @@ def filter_odd(xs):
 # they are used in the doctests for the functions below.
 
 math_grades={
-        'donald knuth':85,
-        'hypatia':75,
+        'donald knuth':85, #left of colon is the key, right of colon is the value
+        'hypatia':75, # each line is a key:value pair and they're separated by commas
         'emmy noether':86,
         'leonhard euler':92,
         'grigori perelman':95,
@@ -155,6 +155,16 @@ def lowest_grade(d):
     79
     '''
 
+    lowest = math.inf
+    # for x in xs: looping over a list, getting the values of a list
+    # equivalent to the 
+    # for i in range(len(xs)) for lists
+    for key in d:
+        grade = d[key]
+        if grade < lowest:
+            lowest = grade
+    return lowest
+
 
 def student_with_lowest_grade(d):
     '''
@@ -166,3 +176,13 @@ def student_with_lowest_grade(d):
     >>> student_with_lowest_grade(economics_grades)
     'kristalina georgieva'
     '''
+
+    lowest = math.inf
+    lowest_index = None
+
+    for key in d:
+        grade = d[key]
+        if grade < lowest:
+            lowest = grade
+            lowest_index = key
+    return lowest_index
