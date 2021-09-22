@@ -4,7 +4,7 @@
 Lab instructions: 
 Complete each function below so that all doctests pass.
 Recall that you can run the doctests by running the command
-$ python3 -m doctest --verbose lab.py
+$ python3 -m doctest --verbose labnhw.py
 Once all doctests pass, upload the output of the above command to sakai.
 NOTE:
 Each problem should be relatively straightforward and take less than 10 minutes.
@@ -130,9 +130,9 @@ def max_num_4(a, b, c, d):
     10
     '''
    
-    if a > b or a > c or a > d:
+    if a > b and a > c and a > d:
         print(a)
-    elif b > c or b > d:
+    elif b > c and b > d:
         print(b)
     elif c > d:
         print(c)
@@ -155,12 +155,10 @@ def max_num_abs(a, b):
     4
     '''
 
-    if a > b:
-        formula = abs(a)
-        print(formula)
+    if abs(a) > abs(b):
+        return a
     else:
-        formula = abs(b)
-        print(formula)
+        return b
 
 
 def is_leap_year(n):
@@ -277,12 +275,14 @@ def is_prime(n):
     >>> is_prime(99)
     False
     '''
-    
-    for i in range(37):
-        if n-1 // n:
-            return True
-        else:
+
+    if n == 1:
+        return False
+
+    for i in range(2,n):
+        if n%i == 0:
             return False
+    return True
 
 
 def is_perfect_square(n):
@@ -308,6 +308,14 @@ def is_perfect_square(n):
     >>> is_perfect_square(144)
     True
     '''
+
+    if n < 0:
+        return False
+
+    for i in range(0,n+1):
+        if i*i==n:
+            return True
+    return False
 
 
 def fibonacci(n):
@@ -344,3 +352,16 @@ def fibonacci(n):
     >>> fibonacci(1000)
     43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
     '''
+
+    f0 = 0
+    f1 = 1
+    fn = f1
+
+    if n == 0:
+        return 0
+
+    for i in range(0,n-1):
+        fn = f1 + f0
+        f0 = f1
+        f1 = fn
+    return fn
