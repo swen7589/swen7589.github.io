@@ -34,7 +34,7 @@ def sum_of_digits(n):
 
     while n:
         total = n%10
-        digits += 1
+        digits += n
         n //= 10
         total = digits
     return total
@@ -102,6 +102,16 @@ def sum_of_primes(n):
     17
     '''
 
+    total = 0
+
+    for i in range(2,n+1):
+        if is_prime(n) == True:
+            i += 1
+            total += n
+            return total
+        else:
+            return n
+            
 
 def is_prime(n):
     '''
