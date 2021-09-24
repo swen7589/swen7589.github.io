@@ -29,13 +29,14 @@ def sum_of_digits(n):
     45
     '''
 
-    i = 0
     total = 0
+    digits = 0
 
     while n:
-        i = n%10
-        total += 1
+        total = n%10
+        digits += 1
         n //= 10
+        total = digits
     return total
 
 
