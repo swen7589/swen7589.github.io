@@ -2,7 +2,7 @@
 Lab instructions: 
 Complete each function below so that all doctests pass.
 You can run the doctess with the command
-$ python3 -m doctest --verbose lab.py
+$ python3 -m doctest --verbose weekthreelab.py
 Once all doctests pass, upload the output of the above command to sakai.
 '''
 
@@ -28,6 +28,12 @@ def sum_of_digits(n):
     >>> sum_of_digits(1234567890)
     45
     '''
+
+    while n:
+        i = n%10
+        j = n//10
+        total = i + j
+    return total
 
 
 def triangular_number(n):
