@@ -75,6 +75,12 @@ def triangular_number(n):
     76205685
     '''
 
+    total = 0
+
+    for i in range(n+1):
+        total = total + i
+    return total
+
 
 def sum_of_primes(n):
     '''
@@ -104,14 +110,10 @@ def sum_of_primes(n):
 
     total = 0
 
-    for i in range(2,n+1):
-        if is_prime(n) == True:
-            i += 1
-            total += n
-            return total
-        else:
-            return n
-            
+    for i in range(0,n+1):
+        if is_prime(i) == True:
+            total = total + i
+    return total
 
 def is_prime(n):
     '''
