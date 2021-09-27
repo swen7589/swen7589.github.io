@@ -1,17 +1,24 @@
 .div-1 {
-    background-color: blue;
-    height: 50px;
-    width: 50px;
+    background-color:lightblue;
+    height: 5px;
+    width: 237px;
   }
   
   .div-2 {
-    background-color: red;
-    height: 100px;
-    width: 100px;
+    background-color:lavenderblush;
+    height: 5px;
+    width: 770px;
   }
   
   .div-3 {
-    background-color: yellow;
-    height: 200px;
-    width: 200px;
+    background-color:lightgoldenrodyellow;
+    height: 5px;
+    width: 7700px;
+  }
+
+  .div-4{
+    background-color:lightgrey;
+    height: 5px;
+    width: 7700px;
+
   }
