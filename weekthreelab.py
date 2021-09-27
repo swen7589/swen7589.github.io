@@ -165,6 +165,11 @@ def last_element(xs):
     >>> last_element([])
     '''
 
+    if xs == []:
+        return None
+    else: 
+        return xs[-1]
+
 
 def last_element_list(xs):
     '''
@@ -180,6 +185,11 @@ def last_element_list(xs):
     >>> last_element_list([])
     []
     '''
+
+    if xs == []:
+        return []
+    else:
+        return [xs[-1]]
 
 
 def first_three(xs):
@@ -199,6 +209,14 @@ def first_three(xs):
     []
     '''
 
+    if xs == []:
+        return []
+    
+    if len(xs) <= 3:
+        return xs
+    else:
+        return xs[:3]
+
 
 def last_three(xs):
     '''
@@ -213,6 +231,11 @@ def last_three(xs):
     >>> last_three([0,1])
     [0, 1]
     '''
+    
+    if len(xs) <= 3:
+        return xs
+    else:
+        return xs[-3:]
 
 
 def filter_even(xs):
@@ -230,6 +253,12 @@ def filter_even(xs):
     [13, 19]
     '''
 
+    accumulator = []
+    for x in xs:
+        if x%2 != 0:
+            accumulator.append(x)
+    return accumulator
+
 
 def bigger_than_10(xs):
     '''
@@ -243,6 +272,12 @@ def bigger_than_10(xs):
     >>> bigger_than_10([4,5,6,11])
     1
     '''
+
+    accumulator = []
+    for x in xs:
+        if x > 10:
+            accumulator.append(x)
+    return len(accumulator)
 
 
 def second_largest(xs):
@@ -261,6 +296,13 @@ def second_largest(xs):
     >>> second_largest([])
     '''
 
+    if len(xs) < 2:
+        return None
+    
+    for x in xs:
+        xs.sort()
+    return xs[-2]
+    
 
 def has_index_at_value(xs):
     '''
@@ -289,6 +331,11 @@ def has_index_at_value(xs):
     False
     '''
 
+    for i in range(len(xs)):
+        if xs[i] == i:
+            return True
+    return False
+
 
 def flatten(xss):
     '''
@@ -302,6 +349,12 @@ def flatten(xss):
     >>> flatten([[10]])
     [10]
     '''
+
+    accumulator = []
+
+    for xs in xss:
+        accumulator += xs
+    return accumulator
 
 
 def filter_flatten(xss):
@@ -324,6 +377,8 @@ def filter_flatten(xss):
     >>> filter_flatten([[10]])
     [10]
     '''
+
+    # for i in range(len(xss)):
 
 
 ################################################################################
