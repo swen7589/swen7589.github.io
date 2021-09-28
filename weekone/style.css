@@ -25,4 +25,22 @@
 
   span {
     color:mediumpurple;
-}
+  }
+
+  @media only screen and (max-width: 500px) {
+    
+    body {
+      background-color:lightcyan;
+    }
+
+  }
+
+  a:hover {
+    background-color:mintcream;
+  }
+
+  a {
+
+    color:lightskyblue;
+
+  }
