@@ -30,13 +30,10 @@ def sum_of_digits(n):
     '''
 
     total = 0
-    digits = 0
 
-    while n:
-        total = n%10
-        digits += n
-        n //= 10
-        total = digits
+    while n > 0:
+        total += n%10
+        n = n//10
     return total
 
 
@@ -378,7 +375,11 @@ def filter_flatten(xss):
     [10]
     '''
 
-    # for i in range(len(xss)):
+    accumulator = []
+
+    for i in range(len(xss)):
+        accumulator.append(xss[i][i])
+    return accumulator
 
 
 ################################################################################
@@ -390,6 +391,7 @@ def filter_flatten(xss):
 # These dictionaries store the grades of famous people in their math, english, and economics classes.
 # You shouldn't modify these dictionaries,
 # they are used in the doctests for the functions below.
+
 math_grades={
         'donald knuth':85,
         'hypatia':75,
@@ -434,6 +436,9 @@ def get_number_of_students_in_class(d):
     6
     '''
 
+    if d:
+        return len(d)
+
 
 def highest_grade(d):
     '''
@@ -446,6 +451,13 @@ def highest_grade(d):
     95
     '''
 
+    max_i = 0
+
+    for i in d:
+        if d[i] > max_i:
+            max_i = d[i]
+    return max_i
+
 
 def student_with_highest_grade(d):
     '''
@@ -457,7 +469,16 @@ def student_with_highest_grade(d):
     >>> student_with_highest_grade(economics_grades)
     'pierre-joseph proudhon'
     '''
+    
+    max_i = 0
+    max_in = 0
 
+    for i in d:
+        if d[i] > max_i:
+            max_i = d[i]
+            max_in = i
+    return max_in
+    
 
 def students_getting_an_a(d):
     '''
@@ -472,6 +493,13 @@ def students_getting_an_a(d):
     >>> students_getting_an_a(economics_grades)
     ['alan greenspan', 'karl marx', 'pierre-joseph proudhon']
     '''
+
+    accumulator = []
+
+    for i in d:
+        if d[i] >= 90:
+            accumulator.append(i)
+    return sorted(accumulator)
 
 
 ################################################################################
@@ -558,3 +586,12 @@ def most_retweeted(tweets):
     >>> most_retweeted(trump_tweets[:5])
     '947592785519173637'
     '''
+    
+    max_tweet = 0
+    max_idstr = 0
+
+    for tweet in range(len(tweets)):
+        if trump_tweets[tweet]["retweet_count"] > max_tweet:
+            max_tweet = trump_tweets[tweet]["retweet_count"]
+            max_idstr = tweet
+    return trump_tweets[max_idstr]["id_str"]
