@@ -47,6 +47,25 @@ def compile_headers(line):
     >>> compile_headers('      # this is not a header')
     '      # this is not a header'
     '''
+
+    if line[0:6] == '######':
+        line = '<h6>' + line[6:] + '</h6>'
+
+    if line[0:5] == '#####':
+        line = '<h5>' + line[5:] + '</h5>'
+
+    if line[0:4] == '####':
+        line = '<h4>' + line[4:] + '</h4>'
+
+    if line[0:3] == '###':
+        line = '<h3>' + line[3:] + '</h3>'
+
+    if line[0:2] == '##':
+        line = '<h2>' + line[2:] + '</h2>'
+    
+    if line[0] == '#':
+        line = '<h1>' + line[1:] + '</h1>'
+
     return line
 
 
@@ -69,6 +88,35 @@ def compile_italic_star(line):
     >>> compile_italic_star('*')
     '*'
     '''
+
+    # get the indexes of the stars
+    start_index = None
+    stop_index = None
+
+    '''
+    for i in range(len(line)):
+        if start_index is None and line[i] == '*':
+            start_index = i
+        else:
+            if line[i] == '*':
+                stop_index = i
+    '''
+
+    for i in range(len(line)):
+        if line[i] == '*':
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+
+    # print('start index:', start_index)
+    # print('stop index:', stop_index)
+
+    # use the indexes to create the new string
+
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + '<i>' + line[start_index + 1:stop_index] + '</i>' + line[stop_index + 1:]
+
     return line
 
 
@@ -88,6 +136,20 @@ def compile_italic_underscore(line):
     >>> compile_italic_underscore('_')
     '_'
     '''
+
+    start_index = None
+    stop_index = None
+
+    for i in range(len(line)):
+        if line[i] == '_':
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+    
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + '<i>' + line[start_index + 1:stop_index] + '</i>' + line[stop_index + 1:]
+
     return line
 
 
@@ -109,6 +171,23 @@ def compile_strikethrough(line):
     >>> compile_strikethrough('~~')
     '~~'
     '''
+
+    start_index = None
+    stop_index = None
+
+    for i in range(len(line)):
+        if line[i:i+2] == '~~':
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+    
+    # print('start index:', start_index)
+    # print('stop index:', stop_index)
+    
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + '<ins>' + line[start_index + 2:stop_index] + '</ins>' + line[stop_index + 2:]
+    
     return line
 
 
@@ -128,6 +207,20 @@ def compile_bold_stars(line):
     >>> compile_bold_stars('**')
     '**'
     '''
+
+    start_index = None
+    stop_index = None
+
+    for i in range(len(line)):
+        if line[i:i+2] == '**':
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + '<b>' + line[start_index + 2:stop_index] + '</b>' + line[stop_index + 2:]
+
     return line
 
 
@@ -147,8 +240,21 @@ def compile_bold_underscore(line):
     >>> compile_bold_underscore('__')
     '__'
     '''
-    return line
 
+    start_index = None
+    stop_index = None
+
+    for i in range(len(line)):
+        if line[i:i+2] == '__':
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + '<b>' + line[start_index + 2:stop_index] + '</b>' + line[stop_index + 2:]
+
+    return line
 
 def compile_code_inline(line):
     '''
@@ -173,8 +279,21 @@ def compile_code_inline(line):
     >>> compile_code_inline('```python3')
     '```python3'
     '''
-    return line
 
+    start_index = None
+    stop_index = None
+
+    for i in range(len(line)):
+        if line[i] == "`":
+            if start_index is None:
+                start_index = i
+            else:
+                stop_index = i
+    
+    if start_index is not None and stop_index is not None:
+        line = line[:start_index] + "<code>" + "&lt;" + line[start_index + 1: start_index + 3] + "&gt;" + "</code>" + line[stop_index + 1:]
+# 5 more lines of code ffs
+    return line
 
 def compile_links(line):
     '''
