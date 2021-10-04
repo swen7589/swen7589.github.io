@@ -52,6 +52,8 @@ empty = '​​​​​​​​​​​​​​​​​​​​​​​�
 accents_1 = 'á'
 accents_2 = 'á'
 
+# len() displays the number of characters, not the number of graphemes
+
 # Equality in python (and all programming languages) is not based on grapheme-equivalence;
 # it is based on character-equivalence
 
@@ -59,10 +61,10 @@ accents_2 = 'á'
 # ord() converts from `str` to the code point
 # chr() converts from the code point to `str`
 
-accents_1a = '\xe1'
-accents_1b = '\u00e1'
-accents_1c = '\U000000e1'
-accents_2b = 'a\u0301'
+accents_1a = '\xe1'         # \x has range from 0 - 255
+accents_1b = '\u00e1'       # \u has range from 0 - 65335
+accents_1c = '\U000000e1'   # \U can store everything (0 - 4 billion) | character: grapheme same, notation is different
+accents_2b = 'a\u0301'      # same grapheme, different characters
 accents_2c = 'a\U00000301'
 
 # NOTE:
@@ -77,7 +79,7 @@ accents_2c = 'a\U00000301'
 # normal form decomposed (NFD) ungroups graphemes into as many characters as possible
 
 import unicodedata
-# accents_3 = unicodedata.normalize('NKC', accents_1)
+accents_3 = unicodedata.normalize('NFC', accents_1)
 
 # Example: Vietnamese
 
@@ -87,7 +89,7 @@ vietnamese_NFKC = 'lập trình máy tính là tốt nhất !!!'
 # Example: Arabic
 # Arabic has lots of special characters, see: https://en.wikipedia.org/wiki/Arabic_script_in_Unicode
 
-pbuh = 'ﷺ'       # "Peace be upon him"
+pbuh = 'ﷺ'               # "Peace be upon him"
 basmala = '﷽'   # "In the name of Allah"
 
 # PRINCIPLE 1:
@@ -125,7 +127,13 @@ korean_alphabet_DPRK = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄲ', 'ㄸ']
 
 # The `byte` type looks like strings but starts with a `b`
 
+# normal strings and raw strings are the same type
+# 'this is normal'   r'this is raw'
+# raw string ignores escape characters like /n 
+
 example = b'this is a `byte`'
+
+# everytime you load a file in python, you are always reading bytes (cuz that's how it is stored)
 
 # NOTE:
 # The type `byte` in python stores more than one byte!
