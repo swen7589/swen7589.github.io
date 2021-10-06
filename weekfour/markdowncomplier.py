@@ -284,16 +284,22 @@ def compile_code_inline(line):
     stop_index = None
 
     for i in range(len(line)):
-        if line[i] == "`":
+        if line[i] == "`" and (i == len(line) - 1 or line[i+1] != '`'):
             if start_index is None:
                 start_index = i
-            else:
+            elif stop_index is None:
                 stop_index = i
     
     if start_index is not None and stop_index is not None:
-        line = line[:start_index] + "<code>" + "&lt;" + line[start_index + 1: start_index + 3] + "&gt;" + "</code>" + line[stop_index + 1:]
-# 5 more lines of code ffs
-    return line
+        new_line = line[start_index+1:stop_index]
+        new_line = new_line.replace('<', '&lt;')
+        new_line = new_line.replace('>', '&gt;')
+        bleh = line[:start_index] + '<code>' + new_line + '</code>' + line[stop_index+1:]
+    else:
+        bleh = line
+    
+    return bleh
+
 
 def compile_links(line):
     '''
@@ -310,7 +316,30 @@ def compile_links(line):
     >>> compile_links('this is wrong: [course webpage](https://github.com/mikeizbicki/cmc-csci040')
     'this is wrong: [course webpage](https://github.com/mikeizbicki/cmc-csci040'
     '''
-    return line
+
+    open_paren = line.find('(')
+    end_paren = line.find(')')
+    open_bracket = line.find('[')
+    end_bracket = line.find(']')
+
+    '''
+    for i in range(len(line)):
+        if line[i] == '[' or '(':
+            if start_index is None:
+                start_index = i
+        elif line[i] == ']' or ')':
+            if stop_index is None:
+                stop_index = i
+    '''
+    
+    if line:
+        new_line = line[start_index+1:stop_index]
+        new_line()
+        bleh = line[:start_index] + new_line + line[stop_index+1:]
+    else:
+        bleh = line
+    
+    return bleh
 
 
 def compile_images(line):
