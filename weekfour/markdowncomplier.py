@@ -330,7 +330,7 @@ def compile_links(line):
         elif line[i] == ']' or ')':
             if stop_index is None:
                 stop_index = i
-    '''
+    
     
     if line:
         new_line = line[start_index+1:stop_index]
@@ -340,6 +340,7 @@ def compile_links(line):
         bleh = line
     
     return bleh
+    '''
 
 
 def compile_images(line):
@@ -374,20 +375,25 @@ def compile_lines(text):
     This function calls all of the functions you created above to convert the full markdown file into HTML.
     This function also handles multiline markdown like <p> tags and <pre> tags;
     because these are multiline commands, they cannot work with the line-by-line style of commands above.
+    
     NOTE:
     The doctests are divided into two sets.
     The first set of doctests below show how this function adds <p> tags and calls the functions above.
     Once you implement the functions above correctly,
     then this first set of doctests will pass.
+    
     NOTE:
     For your assignment, the most important thing to take away from these test cases is how multiline tests can be formatted.
+    
     >>> compile_lines('This is a **bold** _italic_ `code` test.\nAnd *another line*!\n')
     '<p>\nThis is a <b>bold</b> <i>italic</i> <code>code</code> test.\nAnd <i>another line</i>!\n</p>'
+    
     >>> compile_lines("""
     ... This is a **bold** _italic_ `code` test.
     ... And *another line*!
     ... """)
     '\n<p>\nThis is a <b>bold</b> <i>italic</i> <code>code</code> test.\nAnd <i>another line</i>!\n</p>'
+    
     >>> print(compile_lines("""
     ... This is a **bold** _italic_ `code` test.
     ... And *another line*!
@@ -397,6 +403,7 @@ def compile_lines(text):
     This is a <b>bold</b> <i>italic</i> <code>code</code> test.
     And <i>another line</i>!
     </p>
+    
     >>> print(compile_lines("""
     ... *paragraph1*
     ...
@@ -414,11 +421,13 @@ def compile_lines(text):
     <p>
     <code>paragraph3</code>
     </p>
+    
     NOTE:
     This second set of test cases tests multiline code blocks.
     HINT:
     In order to get some of these test cases to pass,
     you will have to both add new code and remove some of the existing code that I provide you.
+    
     >>> print(compile_lines("""
     ... ```
     ... x = 1*2 + 3*4
@@ -429,6 +438,7 @@ def compile_lines(text):
     x = 1*2 + 3*4
     </pre>
     <BLANKLINE>
+    
     >>> print(compile_lines("""
     ... Consider the following code block:
     ... ```
@@ -442,6 +452,7 @@ def compile_lines(text):
     x = 1*2 + 3*4
     </pre>
     </p>
+    
     >>> print(compile_lines("""
     ... Consider the following code block:
     ... ```
@@ -465,6 +476,7 @@ def compile_lines(text):
     print(this_is_a_variable)
     </pre>
     </p>
+    
     >>> print(compile_lines("""
     ... ```
     ... for i in range(10):
@@ -500,7 +512,7 @@ def compile_lines(text):
             line = compile_italic_underscore(line)
             line = compile_code_inline(line)
             line = compile_images(line)
-            line = compile_links(line)
+            # line = compile_links(line)
         new_lines.append(line)
     new_text = '\n'.join(new_lines)
     return new_text
