@@ -17,12 +17,14 @@ def rot13(text):
     This is of course not a very good encryption scheme because it's easy for anyone to decrypt,
     but it's useful for hiding information from the muggles who can't program.
     It's basically like the [pig latin](https://en.wikipedia.org/wiki/Pig_Latin) of programming.
+    
     NOTE:
     Your function only has to work for lower case English text.
     HINT:
     Use the `ord` function to convert each character to a number;
     do your math on that number;
     then use `chr` to convert bach to a string.
+
     >>> rot13('python is awesome')
     'clguba vf njrfbzr'
     >>> rot13('clguba vf njrfbzr')
@@ -35,6 +37,7 @@ def rot13(text):
     'Perfpvg phz pbzzrepvb pvivgnf.'
     >>> rot13('Pynerzbag ZpXraan Pbyyrtr’f zvffvba vf "gb rqhpngr vgf fghqragf sbe gubhtugshy naq cebqhpgvir yvirf naq erfcbafvoyr yrnqrefuvc va ohfvarff, tbireazrag, naq gur cebsrffvbaf, naq gb fhccbeg snphygl naq fghqrag fpubynefuvc gung pbagevohgr gb vagryyrpghny ivgnyvgl naq gur haqrefgnaqvat bs choyvp cbyvpl vffhrf."')
     'Claremont McKenna College’s mission is "to educate its students for thoughtful and productive lives and responsible leadership in business, government, and the professions, and to support faculty and student scholarship that contribute to intellectual vitality and the understanding of public policy issues."'
+    
     HINT:
     Use the accumulator pattern.
     Loop over each character in the string, and if it is not a letter, then just add it to the accumulator.
@@ -44,20 +47,34 @@ def rot13(text):
     '''
 
     accumulator = []
+    new_text = ''
 
     for i in text:
-        # lowercase letter
-        if ord(i) >= 97:
-            i += 13
-            new_i = chr(i)
+        # uppercase letter
+        if ord(i) >= 65 and ord(i) <= 90:
+            new_i = chr(ord(i)+13)
             accumulator.append(new_i)
-        if ord(i) >= 110:
-            i -= 13 
-            new_i = chr(i)
+        elif ord(i) >= 78 and ord(i) <= 90:
+            new_i = chr(ord(i)-13)
             accumulator.append(new_i)
-    return accumulator
-        
+       
+       # lowercase letter
+        elif ord(i) >= 97 and ord(i) <= 122:
+            new_i = chr(ord(i)+13)
+            accumulator.append(new_i)
+        elif ord(i) >= 110 and ord(i) <= 122:
+            new_i = chr(ord(i)-13)
+            accumulator.append(new_i)
 
+        # other characters
+        else:
+            accumulator.append(i)
+    
+    new_text = new_text.join(accumulator)
+
+    return new_text
+        
+        
 def greekify(text):
     '''
     Transliterating is the process of converting between two different alphabets at a character-by-character level.
