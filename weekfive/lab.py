@@ -43,6 +43,20 @@ def rot13(text):
     similarly, you know something is a lowercase letter because it is >= 'a' and <= 'z'.
     '''
 
+    accumulator = []
+
+    for i in text:
+        # lowercase letter
+        if ord(i) >= 97:
+            i += 13
+            new_i = chr(i)
+            accumulator.append(new_i)
+        if ord(i) >= 110:
+            i -= 13 
+            new_i = chr(i)
+            accumulator.append(new_i)
+    return accumulator
+        
 
 def greekify(text):
     '''
@@ -71,6 +85,7 @@ def greekify(text):
     If the character is not in either string,
     then just add that character to the accumulator.
     '''
+    
     greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
     latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
 
@@ -111,4 +126,3 @@ def grapheme_equality(x, y):
     >>> grapheme_equality('lập trình máy tính là tốt nhất !!!', 'lập trình máy tính là tốt nhất !!!')
     True
     '''
-    
