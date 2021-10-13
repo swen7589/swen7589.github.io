@@ -330,17 +330,22 @@ def compile_links(line):
         elif line[i] == ']' or ')':
             if stop_index is None:
                 stop_index = i
-    
+    '''
     
     if line:
-        new_line = line[start_index+1:stop_index]
+        new_line = line[open_paren:end_paren]
         new_line()
-        bleh = line[:start_index] + new_line + line[stop_index+1:]
+        bleh = line[:open_paren] + new_line + line[end_paren:]
     else:
         bleh = line
+
+    if line:
+        new_line = line[open_bracket:end_bracket]
+        new_line()
+        blah = line[:open_bracket] + new_line + line[end_bracket:]
+    else:
+        blah = line
     
-    return bleh
-    '''
 
 
 def compile_images(line):

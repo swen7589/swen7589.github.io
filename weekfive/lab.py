@@ -106,6 +106,25 @@ def greekify(text):
     greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
     latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
 
+    accumulator = []
+    new_text = ''
+
+    for i in text:
+        if ord(i) == ord(greek_alphabet):
+            new_i = chr(ord(greek_alphabet))
+            accumulator.append(new_i)
+        
+        elif ord(i) == ord(latin_alphabet):
+            new_i = chr(ord(latin_alphabet))
+            accumulator.append(new_i)
+        
+        else:
+            accumulator.append(i)
+    
+    new_text = new_text.join(accumulator)
+
+    return new_text
+
 
 def character_equality(x, y):
     '''
@@ -125,6 +144,11 @@ def character_equality(x, y):
     False
     '''
 
+    if ord(x) == ord(y):
+        return True
+    else:
+        return False
+
 
 def grapheme_equality(x, y):
     '''
@@ -143,3 +167,8 @@ def grapheme_equality(x, y):
     >>> grapheme_equality('lập trình máy tính là tốt nhất !!!', 'lập trình máy tính là tốt nhất !!!')
     True
     '''
+
+    if ord(x) == ord(y):
+        return True
+    else:
+        return False
