@@ -333,7 +333,7 @@ def compile_links(line):
     '''
     
     if line:
-        new_line = line[open_paren:end_paren]
+        new_line = line.replace('(','<a href=')
         new_line()
         bleh = line[:open_paren] + new_line + line[end_paren:]
     else:
@@ -346,6 +346,11 @@ def compile_links(line):
     else:
         blah = line
     
+    if line:
+        new_line = bleh + blah
+        line = new_line
+
+    return line
 
 
 def compile_images(line):
@@ -362,6 +367,8 @@ def compile_images(line):
     >>> compile_images('This is an image of Mike Izbicki: ![Mike Izbicki](https://avatars1.githubusercontent.com/u/1052630?v=2&s=460)')
     'This is an image of Mike Izbicki: <img src="https://avatars1.githubusercontent.com/u/1052630?v=2&s=460" alt="Mike Izbicki" />'
     '''
+
+    
     return line
 
 
