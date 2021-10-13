@@ -46,32 +46,38 @@ def rot13(text):
     similarly, you know something is a lowercase letter because it is >= 'a' and <= 'z'.
     '''
 
-    accumulator = []
     new_text = ''
 
     for i in text:
         # uppercase letter
-        if ord(i) >= 65 and ord(i) <= 90:
-            new_i = chr(ord(i)+13)
-            accumulator.append(new_i)
-        elif ord(i) >= 78 and ord(i) <= 90:
-            new_i = chr(ord(i)-13)
-            accumulator.append(new_i)
+        if i >= 'A' and i <= 'Z':
+            
+            new_i = ord(i)+13
+            
+            if new_i > ord('Z'):
+                new_i = new_i - 26
+            
+            new_i = chr(new_i)
+            
+            new_text += new_i
        
        # lowercase letter
-        elif ord(i) >= 97 and ord(i) <= 122:
-            new_i = chr(ord(i)+13)
-            accumulator.append(new_i)
-        elif ord(i) >= 110 and ord(i) <= 122:
-            new_i = chr(ord(i)-13)
-            accumulator.append(new_i)
+
+        elif i >= 'a' and i <= 'z':
+            
+            new_i = ord(i)+13
+            
+            if new_i > ord('z'):
+                new_i = new_i - 26
+            
+            new_i = chr(new_i)
+            
+            new_text += new_i
 
         # other characters
         else:
-            accumulator.append(i)
+            new_text += i
     
-    new_text = new_text.join(accumulator)
-
     return new_text
         
         
@@ -92,6 +98,7 @@ def greekify(text):
     'Cρεσcιτ cυμ cομμερcιο cιvιτασ.'
     >>> greekify('Claremont McKenna College’s mission is "to educate its students for thoughtful and productive lives and responsible leadership in business, government, and the professions, and to support faculty and student scholarship that contribute to intellectual vitality and the understanding of public policy issues."')
     'Cλαρεμοντ ΜcΚεννα Cολλεγε’σ μισσιον ισ "το εδυcατε ιτσ στυδεντσ φορ τηουγητφυλ ανδ προδυcτιvε λιvεσ ανδ ρεσπονσιβλε λεαδερσηιπ ιν βυσινεσσ, γοvερνμεντ, ανδ τηε προφεσσιονσ, ανδ το συππορτ φαcυλτψ ανδ στυδεντ σcηολαρσηιπ τηατ cοντριβυτε το ιντελλεcτυαλ vιταλιτψ ανδ τηε υνδερστανδινγ οφ πυβλιc πολιcψ ισσυεσ."'
+
     NOTE:
     The `greek_alphabet` and `latin_alphabet` variables provide a mapping between the greek and latin alphabets.
     For example, we know that 'Δ' corresponds to 'D' because the occur at the same position in both strings.
@@ -106,23 +113,19 @@ def greekify(text):
     greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
     latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
 
-    accumulator = []
     new_text = ''
 
     for i in text:
-        if ord(i) == ord(greek_alphabet):
-            new_i = chr(ord(greek_alphabet))
-            accumulator.append(new_i)
-        
-        elif ord(i) == ord(latin_alphabet):
-            new_i = chr(ord(latin_alphabet))
-            accumulator.append(new_i)
-        
-        else:
-            accumulator.append(i)
-    
-    new_text = new_text.join(accumulator)
 
+        greek_pos = greek_alphabet.find(i)
+        latin_pos = latin_alphabet.find(i)
+
+        if greek_pos != -1:
+            new_text += latin_alphabet[greek_pos]
+        elif latin_pos != -1:
+            new_text += greek_alphabet[latin_pos]
+        else:
+            new_text += i
     return new_text
 
 
@@ -144,10 +147,7 @@ def character_equality(x, y):
     False
     '''
 
-    if ord(x) == ord(y):
-        return True
-    else:
-        return False
+    return x == y
 
 
 def grapheme_equality(x, y):
@@ -168,7 +168,18 @@ def grapheme_equality(x, y):
     True
     '''
 
-    if ord(x) == ord(y):
+    import unicodedata
+
+    if unicodedata.normalize('NFC', x) == unicodedata.normalize('NFC', y):
         return True
     else:
         return False
+
+def hundred_translations():
+
+    from deep_translator import GoogleTranslator
+
+    for language in GoogleTranslator.get_supported_languages():
+        print(GoogleTranslator(target=language).translate("python is awesome"))
+
+hundred_translations()
