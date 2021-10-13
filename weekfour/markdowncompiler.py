@@ -104,6 +104,7 @@ def compile_italic_star(line):
 
     for i in range(len(line)):
         if line[i] == '*':
+            # if line[i-1] == '\'
             if start_index is None:
                 start_index = i
             else:
@@ -321,37 +322,13 @@ def compile_links(line):
     end_paren = line.find(')')
     open_bracket = line.find('[')
     end_bracket = line.find(']')
-
-    '''
-    for i in range(len(line)):
-        if line[i] == '[' or '(':
-            if start_index is None:
-                start_index = i
-        elif line[i] == ']' or ')':
-            if stop_index is None:
-                stop_index = i
-    '''
     
-    if line:
-        new_line = line.replace('(','<a href=')
-        new_line()
-        bleh = line[:open_paren] + new_line + line[end_paren:]
-    else:
-        bleh = line
-
-    if line:
-        new_line = line[open_bracket:end_bracket]
-        new_line()
-        blah = line[:open_bracket] + new_line + line[end_bracket:]
-    else:
-        blah = line
-    
-    if line:
-        new_line = bleh + blah
-        line = new_line
+    if open_bracket >= 0 and end_bracket >= 0 and open_paren >= 0 and end_paren >= 0:
+        if open_bracket < end_bracket == open_paren-1 < end_paren:
+            new_line = line[:open_bracket]+'<a href="'+line[open_paren+1:end_paren]+'">'+line[open_bracket+1:end_bracket]+'</a>'+line[end_paren+1:]
+            return new_line
 
     return line
-
 
 def compile_images(line):
     '''
@@ -367,8 +344,17 @@ def compile_images(line):
     >>> compile_images('This is an image of Mike Izbicki: ![Mike Izbicki](https://avatars1.githubusercontent.com/u/1052630?v=2&s=460)')
     'This is an image of Mike Izbicki: <img src="https://avatars1.githubusercontent.com/u/1052630?v=2&s=460" alt="Mike Izbicki" />'
     '''
-
     
+    left_square = line.find('[')
+    right_square = line.find(']')
+    left_paren = line.find('(')
+    right_paren = line.find(')')
+
+    if left_square >= 0 and right_square >= 0 and left_paren >= 0 and right_paren >= 0:
+        if left_square < right_square == left_paren-1 < right_paren and line[left_square-1]=='!':
+            new_line = line[:left_square-1]+'<img src="'+line[left_paren+1:right_paren]+'" alt="'+line[left_square+1:right_square]+'" />'+line[right_paren+1:]
+            return new_line
+
     return line
 
 
@@ -506,13 +492,20 @@ def compile_lines(text):
     lines = text.split('\n')
     new_lines = []
     in_paragraph = False
+    in_code = False
     for line in lines:
-        line = line.strip()
         if line=='':
             if in_paragraph:
                 line='</p>'
                 in_paragraph = False
-        else:
+        elif line[:3] == '```':
+            if in_code:
+                line = '</pre>'
+                in_code = False
+            else:
+                line = '<pre>'
+                in_code = True
+        elif not in_code:
             if line[0] != '#' and not in_paragraph:
                 in_paragraph = True
                 line = '<p>\n'+line
@@ -524,7 +517,7 @@ def compile_lines(text):
             line = compile_italic_underscore(line)
             line = compile_code_inline(line)
             line = compile_images(line)
-            # line = compile_links(line)
+            line = compile_links(line)
         new_lines.append(line)
     new_text = '\n'.join(new_lines)
     return new_text
@@ -593,8 +586,16 @@ def minify(html):
     >>> minify('a\n\n\n\n\n\n\n\n\n\n\n\n\n\nb\n\n\n\n\n\n\n\n\n\n')
     'a b'
     '''
-    return html
 
+    html2 = ''
+    lastchar = None
+    for char in html:
+        if not char.isspace():
+            html2 += char
+        elif not (lastchar and lastchar.isspace() and char.isspace()):
+            html2 += ' '
+        lastchar = char
+    return html2.strip()
 
 def convert_file(input_file, add_css):
     '''
