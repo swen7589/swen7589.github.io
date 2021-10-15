@@ -94,7 +94,7 @@ tweets = json.loads(text)
 
 print(len(tweets))
 
-# step 4 parts 3 and 4
+# step 4 parts 3 and 4 (also not done)
 
 #to find 'trump'
 num_trumps = 0
@@ -145,3 +145,6 @@ for tweet in tweets:
         num_fakes += 1
 
 print('num_fakes=', num_fakes)
+
+# find the answers in wednesday_secs because we didnt go 
+# through all of this stuff in class ahaha (:
