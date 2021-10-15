@@ -45,16 +45,16 @@ tweets = json.loads(tweets_str)
 # that can be loaded with the json.load function
 
 '''
-with open('weeksix/condensed_2009.json', encoding = "ascii") as f:
+with open('condensed_2009.json', encoding = "ascii") as f:
     text = f.read()
 
-with open('weeksix/condensed_2010.json', encoding = "ascii") as f:
+with open('condensed_2010.json', encoding = "ascii") as f:
     text = f.read()
 
-with open('weeksix/condensed_2011.json', encoding = "ascii") as f:
+with open('condensed_2011.json', encoding = "ascii") as f:
     text = f.read()
 
-files = ['weeksix/condensed_2009.json', 'weeksix/condensed_2010.json', 'weeksix/condensed_2011.json']
+files = ['condensed_2009.json', 'condensed_2010.json', 'condensed_2011.json']
 text = ' '
 for file in files:
     with open(file, encoding = "ascii") as f:
@@ -73,7 +73,7 @@ for tweet in tweets:
     # if 'trump' in tweet['text']:
     # if 'Trump' in tweet['text']:
     # if 'trump' in tweet['text'].lower():
-    f tweet['text'].find('trump') != -1:    # same as first if statement possibility
+    if tweet['text'].find('trump') != -1:    # same as first if statement possibility
         num_trumps += 1
 
 print('num_trumps=', num_trumps)
