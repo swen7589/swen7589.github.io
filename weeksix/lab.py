@@ -52,6 +52,23 @@ Upload your completed `lab_part1.py` file to sakai,
 and copy and paste the output of running your program into sakai.
 '''
 
+import json
+with open('weeksix/condensed_2009.json', encoding = "ascii") as f:
+    text = f.read()
+
+with open('weeksix/condensed_2010.json', encoding = "ascii") as f:
+    text = f.read()
+
+with open('weeksix/condensed_2011.json', encoding = "ascii") as f:
+    text = f.read()
+
+files = ['weeksix/condensed_2009.json', 'weeksix/condensed_2010.json', 'weeksix/condensed_2011.json']
+text = ' '
+for file in files:
+    with open(file, encoding = "ascii") as f:
+        text = f.read()
+
+
 
 '''
 Lab instructions: 
@@ -210,4 +227,3 @@ def how_many_claremonts_in_str(s):
     4
     '''
     return s.lower().count('claremont')
-    
