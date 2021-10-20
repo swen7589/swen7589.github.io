@@ -55,96 +55,99 @@ and copy and paste the output of running your program into sakai.
 import json
 
 # step 4 part 1
-with open('condensed_2009.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2009.json', 'r') as f1:
+    text1 = f1.read()
 
-with open('condensed_2010.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2010.json', 'r') as f2:
+    text2 = f2.read()
 
-with open('condensed_2011.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2011.json', 'r') as f3:
+    text3 = f3.read()
 
-with open('condensed_2012.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2012.json', 'r') as f4:
+    text4 = f4.read()
 
-with open('condensed_2013.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2013.json', 'r') as f5:
+    text5 = f5.read()
 
-with open('condensed_2015.json', encoding = "ascii") as f:
-    text = f.read()
 
-with open('condensed_2016.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2014.json', 'r') as f6:
+    text6 = f6.read()
 
-with open('condensed_2017.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2015.json', 'r') as f7:
+    text7 = f7.read()
 
-with open('condensed_2018.json', encoding = "ascii") as f:
-    text = f.read()
+with open('condensed_2016.json', 'r') as f8:
+    text8 = f8.read()
+
+with open('condensed_2017.json', 'r') as f9:
+    text9 = f9.read()
+
+with open('condensed_2018.json', 'r') as f10:
+    text10 = f10.read()
 
 
 files = ['condensed_2009.json', 'condensed_2010.json', 'condensed_2011.json', 'condensed_2012.json', 'condensed_2013.json', 'condensed_2014.json', 'condensed_2015.json', 'condensed_2016.json', 'condensed_2017.json', 'condensed_2018.json']
 text = ' '
 for file in files:
-    with open(file, encoding = "ascii") as f:
+    with open(file) as f:
         text = f.read()
 
-# step 4 part 2 (not done)
-tweets = json.loads(text)
+# step 4 part 2 
+tweets1 = json.loads(text1)
+tweets2 = json.loads(text2)
+tweets3 = json.loads(text3)
+tweets4 = json.loads(text4)
+tweets5 = json.loads(text5)
+tweets6 = json.loads(text6)
+tweets7 = json.loads(text7)
+tweets8 = json.loads(text8)
+tweets9 = json.loads(text9)
+tweets10 = json.loads(text10)
 
-print(len(tweets))
+all_tweets = tweets1 + tweets2 + tweets3 + tweets4 + tweets5 + tweets6 + tweets7 + tweets8 + tweets9 + tweets10
 
-# step 4 parts 3 and 4 (also not done)
+print('total number of tweets:', len(all_tweets))
 
-#to find 'trump'
-num_trumps = 0
+# step 4 parts 3 and 4 
 
-for tweet in tweets:
+term_counter = {}
+
+terms = ['trump', 'obama', 'mexico', 'russia', 'fake news', 'china', 'sad', 'wall', 'border']
+
+for term in terms:
+    term_counter[term] = 0
+
+for tweet in all_tweets:
     
-    if 'trump' in tweet['text'].lower():    
-        num_trumps += 1
+    for term in terms:
+        if term in tweet['text'].lower():
+            term_counter[term] += 1
 
-print('num_trumps=', num_trumps)
+print(term_counter)
 
-#to find 'obama'
-num_obamas = 0
+# extra credit
 
-for tweet in tweets:
-    
-    if 'obama' in tweet['text'].lower():   
-        num_obamas += 1
+trump_percent = (term_counter['trump']/len(all_tweets)) * 100
+print(f"trump : {trump_percent:.2f}%")
 
-print('num_obamas=', num_obamas)
+obama_percent = (term_counter['obama']/len(all_tweets)) * 100
+print(f"obama : {obama_percent:.2f}%")
+ 
+russia_percent = (term_counter['russia']/len(all_tweets)) * 100
+print(f"russia : {russia_percent:.2f}%")
+ 
+mexico_percent = (term_counter['mexico']/len(all_tweets)) * 100
+print(f"mexico : {mexico_percent:.2f}%")
+ 
+china_percent = (term_counter['china']/len(all_tweets)) * 100
+print(f"china : {china_percent:.2f}%")
+ 
+sad_percent = (term_counter['sad']/len(all_tweets)) * 100
+print(f"sad : {sad_percent:.2f}%")
+ 
+wall_percent = (term_counter['wall']/len(all_tweets)) * 100
+print(f"wall : {wall_percent:.2f}%")
 
-#to find 'russia'
-num_russias = 0
-
-for tweet in tweets:
-    
-    if 'russia' in tweet['text'].lower():    
-        num_russias += 1
-
-print('num_russias=', num_russias)
-
-#to find 'mexico'
-num_mexicos = 0
-
-for tweet in tweets:
-    
-    if 'mexico' in tweet['text'].lower():   
-        num_mexicos += 1
-
-print('num_mexicos=', num_mexicos)
-
-#to find 'fake news'
-num_fakes = 0
-
-for tweet in tweets:
-    
-    if 'fake news' in tweet['text'].lower():   
-        num_fakes += 1
-
-print('num_fakes=', num_fakes)
-
-# find the answers in wednesday_secs because we didnt go 
-# through all of this stuff in class ahaha (:
+border_percent = (term_counter['border']/len(all_tweets)) * 100
+print(f"border : {border_percent:.2f}%")
