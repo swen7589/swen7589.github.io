@@ -24,6 +24,12 @@ def is_palindrome(s):
     True
     '''
 
+    s_reverse = s[::-1]
+
+    if s == s_reverse:
+        return True
+    return False
+
 
 def is_palindrome_number(n):
     '''
@@ -37,6 +43,13 @@ def is_palindrome_number(n):
     >>> is_palindrome_number(1232123)
     False
     '''
+
+    n_string = str(n)
+    n_reverse = n_string[::-1]
+
+    if n == int(n_reverse):
+        return True
+    return False
 
 
 def string_contains_url(s):
@@ -60,6 +73,13 @@ def string_contains_url(s):
     True
     '''
 
+    if 'http://' in s.lower():
+        return True
+    elif 'https://' in s.lower():
+        return True
+    else:
+        return False
+
 
 def extract_TLD(domain):
     '''
@@ -80,6 +100,8 @@ def extract_TLD(domain):
     'pizza'
     '''
 
+    return domain.split('.')[-1]
+
 
 def remove_duplicate_words(s):
     '''
@@ -97,6 +119,10 @@ def remove_duplicate_words(s):
     >>> remove_duplicate_words('nothing needs to change about this sentence')
     'nothing needs to change about this sentence'
     '''
+
+    s = s.split()
+    s_print = remove_duplicates_from_list(s)
+    return " ".join(s_print)
 
 
 def remove_duplicates_from_list(xs):
@@ -147,4 +173,6 @@ def how_many_claremonts_in_str(s):
     >>> how_many_claremonts_in_str('CLAREMONT. claremont. ClaREMonT. Claremont!')
     4
     '''
-    
+
+    s = s.lower()
+    return s.count('claremont')
