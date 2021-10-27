@@ -3,13 +3,13 @@
 import json
 import matplotlib.pyplot as plt
 
-space_peeps = json.loads(open('astros.json', 'r'))
+space_peeps = json.load(open('astros.json', 'r'))
 
 left = [1, 2, 3]
- 
+
 # heights of bars
 height = [7, 3]
- 
+
 # labels for bars
 tick_label = ['one', 'two', 'three', 'four', 'five', 'six', 'seven']
 
