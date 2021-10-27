@@ -14,29 +14,19 @@ data3Data = list (data3Reader)
 data3Data
 
 x = [2010, 2011, 2012, 2013, 2014, 2015]
-y1 = [8, 1, 2, 3, 11, 6]
-y2 = [2,4,1]
-y3 = [2,4,1]
-y4 = [2,4,1]
-y5 = [2,4,1]
-y6 = [2,4,1]
-y7 = [2,4,1]
-y8 = [2,4,1]
-y9 = [2,4,1]
+y1 = [73+73, 2+2, 0, 1+0, 23+24, 6+6]
+y2 = [37+38, 2+1, 0, 0, 16+16, 6+6]
+y3 = [13+13, 0, 0, 0, 1+1, 1+1]
+y4 = [7+7, 0, 0, 0, 2+2, 0]
 
-plt.plot(x, y1, label = "Apollo")
-plt.plot(x, y2, label = "Amor")
-plt.plot(x, y3, label = "Aten")
-plt.plot(x, y4, label = "Comet")
-plt.plot(x, y5, label = "Jupiter-family Comet")
-plt.plot(x, y6, label = "Jupiter-family Comet*")
-plt.plot(x, y7, label = "Halley-type Comet*")
-plt.plot(x, y8, label = "Parabolic Comet")
-plt.plot(x, y9, label = "Encke-type Comet")
+plt.plot(x, y1, label = "Apollo Orbit")
+plt.plot(x, y2, label = "Amor Orbit")
+plt.plot(x, y3, label = "Aten Orbit")
+plt.plot(x, y4, label = "Comet Orbit")
 
-plt.title('Asteroids, Split by Orbit, and the Years of Discovery')
+plt.title('Asteroids, Meteorites, and Comets and the Years of Discovery')
 plt.xlabel('Years of Discovery')
 plt.ylabel('Number of Asteroids Discovered')
-# plt.legend()
+plt.legend(loc='upper right')
 plt.show()
 
