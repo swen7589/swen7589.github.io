@@ -1,4 +1,5 @@
 import csv
+# graph 1
 data1File = open ('astros.csv')
 data1Reader = csv.reader (data1File)
 data1Data = list (data1Reader)
