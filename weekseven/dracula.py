@@ -11,7 +11,7 @@ text = text.replace('count ', 'professor ')
 text = text.replace('Dracula', 'Izbicki')
 text = text.replace('dracula', 'izbicki')
 text = text.replace('DRACULA', 'IZBICKI')
-text = text.replace('D R A C U L A', 'I Z B I C K I')
+text = text.replace('D&nbsp;R&nbsp;A&nbsp;C&nbsp;U&nbsp;L&nbsp;A', 'I&nbsp;Z&nbsp;B&nbsp;I&nbsp;C&nbsp;K&nbsp;I')
 
 text = text.replace('Bram Stoker', 'Swen Ihueze')
 text = text.replace('Bram ', 'Swen ')
