@@ -3,18 +3,19 @@
 with open('dracula.html', 'r', encoding='utf-8') as f:
     text = f.read()
 
-# step 2 part 1
+# step 2 part 2
 
 text = text.replace('Count', 'Professor')
-text = text.replace('count', 'professor')
+text = text.replace('count ', 'professor ')
 
 text = text.replace('Dracula', 'Izbicki')
 text = text.replace('dracula', 'izbicki')
 text = text.replace('DRACULA', 'IZBICKI')
 text = text.replace('D R A C U L A', 'I Z B I C K I')
 
-text = text.replace('Bram', 'Swen')
-text = text.replace('Stoker', 'Ihueze')
+text = text.replace('Bram Stoker', 'Swen Ihueze')
+text = text.replace('Bram ', 'Swen ')
+text = text.replace(' Stoker', ' Ihueze')
 
 with open('izbicki.html', 'w', encoding='utf-8') as f:
     f.write(text)
