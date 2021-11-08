@@ -50,6 +50,7 @@ reddit = praw.Reddit('bot', user_agent='cs40')
 # Step 2: Reading data
 ################################################################################
 
-for submission in reddit.subreddit('learnpython').top(limit=25):
-    print(submission.title)
+for submission in reddit.subreddit('learnpython').top(time_filter = 'day',limit=25):
+    print('title=', submission.title, 'score=', submission.score, 'name=', submission.name)
 
+# get login creds set up for Wednsday
