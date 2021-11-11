@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 parser = argparse.ArgumentParser(description='Download information from E-Bay and covert it to JSON.')
 parser.add_argument('search_term')
-parser.add_argument('--num_pages', deafult=10)
+parser.add_argument('--num_pages', default=10)
 args = parser.parse_args()
 print('args.search_term=', args.search_term)
 
