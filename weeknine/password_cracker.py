@@ -1,21 +1,24 @@
 
 from zipfile import ZipFile
 
-with open('Ashley-Madison.txt', 'r', encoding='utf-8') as f:
-    text = f.read()
+main_file = 'Ashley-Madison.txt'
+zip_file = "whitehouse_secrets.zip"
 
-passwords = [line.strip() for line in f]
+with open(main_file, 'rb', encoding='utf-8') as passwords:
+    all_passwords = passwords.readlines()
+    num_passwords = len(all_passwords)
 
-for password in passwords:
-    if password:
-        f.extractall(pwd=password)
-        print(password)
-    try:
-        with ZipFile('whitehouse_secrets.zip') as zf:
-            text = zf.read()
-    except RuntimeError:
-        pass
+the_zip = zipfile.ZipFile(zip_file)
 
-
-
+for index, password in enumerate(all_passwords):
+    try: 
+        the_zip.extractall(path="Extracted Folder", pwd=password.strip())
+        print("PASSWORD CRACKED")
+        print("PASSWORD: ", password.decode().strip())
+        break
+    except:
+            
+            print(f"SCAN COMPLETE {round((index/num_passwords)*100, 2)}%")
+            print(f"TRYING AGAIN {password.decode().strip()} ")
+            continue
 
