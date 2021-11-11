@@ -1,10 +1,10 @@
 
-from zipfile import ZipFile
+import zipfile
 
 main_file = 'Ashley-Madison.txt'
 zip_file = "whitehouse_secrets.zip"
 
-with open(main_file, 'rb', encoding='utf-8') as passwords:
+with open(main_file, 'rb') as passwords:
     all_passwords = passwords.readlines()
     num_passwords = len(all_passwords)
 
