@@ -1,5 +1,6 @@
 import praw
 import pprint
+import random 
 
 # FIXME:
 # login to reddit with your bot's credentials;
@@ -8,10 +9,11 @@ import pprint
 # WARNING:
 # If you include any credential information in your final submission,
 # you will receive NEGATIVE POINTS on your lab!!!
-reddit = praw.Reddit('bot', user_agent='swen_bot')
+reddit = praw.Reddit('idk_bot')
 
 # connect to the "Main Discussion Thread" reddit submission
-submission = reddit.submission(url='https://old.reddit.com/r/BotTown/comments/qqmr8l/main_discussion_thread/')
+url='https://old.reddit.com/r/BotTown/comments/qqmr8l/main_discussion_thread/'
+submission = reddit.submission(url=url)
 
 # FIXME:
 # Click the "view more comments" buttons in the reddit submission in order to download all comments.
@@ -31,51 +33,64 @@ submission.comments.replace_more(limit=None)
 # 3. The total number of comments sent by each user.
 #    You should use a dictionary where the keys are the username and the values are the total number of comments.
 
+# 1 (non-deleted top level comments)
+for top_level_comment in submission.comments:
+    try:
+        print(top_level_comment.body)
+    except AttributeError:
+        pass
 
-print('='*40)
-print('top level comments')
-print('='*40)
+print('total top-level comms=', len(submission.comments.list()))
 
-# 1 and 2
-non_deleted_top_comms = []
-deleted_top_comms = []
+# 2 and 3 (deleted top level comments and users)
 
-if comment in reddit.submission.comments:
-    non_deleted_top_comms.append(comment)
-    print('top comments:', len(non_deleted_top_comms))
-else:
-    deleted_top_comms.append(comment)
-    print('deleted top comments:', len(deleted_top_comms))
+not_deleted_comms = 0
+deleted_comms = 0 
+users = {}
 
-# 3
-each_user_comms = []
+for comment in submission.comments:
+    if comment.author == None:
+        deleted_comms += 1
+    elif comment.author != None and comment.author not in users:
+        users[comment.author] = 1
+    elif comment.author != None and comment.author in users:
+        users[comment.author] += 1
+for comment in submission.comments:
+    if comment.author != None:
+        not_deleted_comms += 1
 
-if user in reddit.submission.users:
-    each_user_comms.append(user)
-    print('comments by users:', len(each_user_comms))
+print('not deleted comments:', not_deleted_comms)
+print('deleted comments:', deleted_comms)
+print(users)
 
 # FIXME:
 # Repeat the calculations above,
 # but do it for ALL comments,
 # not just top level comments.
 
-
-print('='*40)
-print('all comments')
-print('='*40)
-
-
-all_comms = []
-
-if comment in reddit.submission:
-    all_comms.append(comment)
-    print('all comments:', len(all_comms))
-
-if comment in reddit.submission.comments:
-    non_deleted_top_comms.append(comment)
-    print('top comments:', len(non_deleted_top_comms))
-else:
-    deleted_top_comms.append(comment)
-    print('deleted top comments:', len(deleted_top_comms))
+for comments in submission.comments.list():
+    
+    try:
+        print('total comments:', len(submission.comments.list()))
+    except AttributeError:
+        pass
 
 
+not_deleted_comms = 0
+deleted_comms=0 
+users = {}
+
+for comment in submission.comments.list():
+    if comment.author == None:
+        deleted_comms += 1
+    elif comment.author != None and comment.author not in users:
+        users[comment.author] = 1
+    elif comment.author != None and comment.author in users:
+        users[comment.author] += 1
+for comment in submission.comments.list():
+    if comment.author != None:
+        not_deleted_comms += 1
+
+print("not deleted comments:", not_deleted_comms)
+print("deleted comments:", deleted_comms)
+print(users)
