@@ -8,7 +8,7 @@ import pprint
 # WARNING:
 # If you include any credential information in your final submission,
 # you will receive NEGATIVE POINTS on your lab!!!
-reddit = praw.Reddit()
+reddit = praw.Reddit('bot', user_agent='swen_bot')
 
 # connect to the "Main Discussion Thread" reddit submission
 submission = reddit.submission(url='https://old.reddit.com/r/BotTown/comments/qqmr8l/main_discussion_thread/')
@@ -30,14 +30,52 @@ submission.comments.replace_more(limit=None)
 # 2. The total number of deleted top level comments,
 # 3. The total number of comments sent by each user.
 #    You should use a dictionary where the keys are the username and the values are the total number of comments.
+
+
 print('='*40)
 print('top level comments')
 print('='*40)
+
+# 1 and 2
+non_deleted_top_comms = []
+deleted_top_comms = []
+
+if comment in reddit.submission.comments:
+    non_deleted_top_comms.append(comment)
+    print('top comments:', len(non_deleted_top_comms))
+else:
+    deleted_top_comms.append(comment)
+    print('deleted top comments:', len(deleted_top_comms))
+
+# 3
+each_user_comms = []
+
+if user in reddit.submission.users:
+    each_user_comms.append(user)
+    print('comments by users:', len(each_user_comms))
 
 # FIXME:
 # Repeat the calculations above,
 # but do it for ALL comments,
 # not just top level comments.
+
+
 print('='*40)
 print('all comments')
 print('='*40)
+
+
+all_comms = []
+
+if comment in reddit.submission:
+    all_comms.append(comment)
+    print('all comments:', len(all_comms))
+
+if comment in reddit.submission.comments:
+    non_deleted_top_comms.append(comment)
+    print('top comments:', len(non_deleted_top_comms))
+else:
+    deleted_top_comms.append(comment)
+    print('deleted top comments:', len(deleted_top_comms))
+
+
