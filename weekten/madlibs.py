@@ -1,3 +1,5 @@
+import random
+
 '''
 This lab has three tasks.
 TASK 1:
@@ -48,4 +50,10 @@ def generate_comment():
     Notice that the word "Programming" is incorrectly capitalized in the second sentence.
     You do not have to worry about making the output grammatically correct inside this function.
     '''
-    
+
+    string = random.choice(madlibs)
+
+    for k in replacements.keys():
+        string = string.replace('['+k+']', random.choice(replacements[k]))
+
+    print(string)
