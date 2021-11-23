@@ -1,6 +1,7 @@
 import praw
 import random
 import datetime
+import time
 
 # FIXME:
 # copy your generate_comment function from the madlibs assignment here
