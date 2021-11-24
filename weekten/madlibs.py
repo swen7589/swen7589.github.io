@@ -56,4 +56,4 @@ def generate_comment():
     for k in replacements.keys():
         string = string.replace('['+k+']', random.choice(replacements[k]))
 
-    print(string)
+    return string
